@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+         unordered_map<int,int>mpp;
+        for(auto &it:nums)
+        {
+            mpp[it]++;
+
+        }
+        int result=0;
+
+
+        for(auto it:mpp)
+        {
+            int frequency=it.second;
+
+            if(frequency==1)return -1;
+
+            result=result+ceil((double)frequency/3);
+        }
+
+        return result;
+    }
+};
