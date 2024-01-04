@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>mpp;
+        mpp[0]=1;
+        int presum=0,count=0;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            presum=presum+nums[i];
+            int remove=presum-k;
+            count=count+mpp[remove];//adding the frequency of remove in our count
+            mpp[presum]+=1;//update the hashmap by adding the frequency of presum
+
+        }
+        return count;
+    }
+};
