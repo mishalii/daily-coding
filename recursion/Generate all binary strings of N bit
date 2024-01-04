@@ -1,0 +1,33 @@
+class Solution{
+public:
+    void helper(vector<string>&ans,int i,int num,string s)
+    {
+        if(i==num)
+        {
+            ans.push_back(s);
+            return;
+        }
+        
+        s=s+'0';
+        helper(ans,i+1,num,s);
+        
+        s.pop_back();
+        
+        if(s[s.size()-1]=='1')//means you have generated all the strings
+        
+        {
+            return;
+        }
+        s=s+'1';
+        helper(ans,i+1,num,s);
+        return;
+    }
+    vector<string> generateBinaryStrings(int num){
+        //Write your code
+        vector<string>ans;
+        string s;
+        helper(ans,0,num,s);
+        return ans;
+        
+    }
+};
