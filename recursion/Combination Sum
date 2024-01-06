@@ -1,0 +1,45 @@
+//given an array you can use the digits nultiple times find the combinations who add up to the target
+
+class Solution {
+public:
+    
+    void findcomb(int index,int target,vector<int>&arr,vector<vector<int>>&ans,vector<int>&ds)
+    {
+        
+        if(index==arr.size())
+        {
+            if(target==0)
+            {
+                ans.push_back(ds);
+            }
+            return;
+        }
+        
+        if(arr[index]<=target)
+        {
+            //pick call
+            
+            
+        ds.push_back(arr[index]);
+            
+            findcomb(index,target-arr[index],arr,ans,ds);
+            
+            ds.pop_back();//bactracking step
+            
+        }
+            
+        findcomb(index+1,target,arr,ans,ds);
+        
+    }
+        
+        
+        
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>ds;
+        findcomb(0,target,candidates,ans,ds);
+        return ans;
+        
+        
+    }
+};
