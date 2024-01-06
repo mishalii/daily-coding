@@ -1,0 +1,34 @@
+class Solution{
+    public:
+    bool solve(int index,int target,vector<int>&arr,vector<vector<int>>&dp)
+    {
+        if(target==0)return true;
+        if(index==0)
+        {
+            if(arr[0]==target)return true;
+            else return false;
+        }
+        
+        if(dp[index][target]!=-1)
+        
+        return dp[index][target];
+        
+        
+        bool nottake=solve(index-1,target,arr,dp);
+        
+        bool take=false;
+        
+        if(target>=arr[index])
+        {
+            take=solve(index-1,target-arr[index],arr,dp);
+        }
+        
+        
+        return  dp[index][target]=take or nottake;
+    }
+    bool checkSubsequenceSum(int n, vector<int>& arr, int k) {
+        // Code here
+        vector<vector<int>>dp(n,vector<int>(k+1,-1));
+        return solve(n-1,k,arr,dp);
+    }
+};
