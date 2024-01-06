@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int solve(int index,int previndex,vector<int>&nums,vector<vector<int>>&dp)
+    {
+
+        int result=0;
+        if(index==nums.size())return 0;
+        //as previndex starts from -1 so by coordinate shift one index will be incremenetd to find the required index
+        if(dp[index][previndex+1]!=-1)return dp[index][previndex+1];
+
+        //not take 
+
+        int nottake=0;
+        nottake=0+solve(index+1,previndex,nums,dp);
+
+        int take=0;
+
+        if(previndex==-1||nums[index]>nums[previndex])
+        {
+            take=1+solve(index+1,index,nums,dp);
+        }
+
+        
+
+        return dp[index][previndex+1]=max(take,nottake);
+
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vector<vector<int>>dp(n,vector<int>(n+1,-1));
+        return solve(0,-1,nums,dp);
+      
+    }
+};
