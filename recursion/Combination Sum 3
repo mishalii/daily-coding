@@ -1,0 +1,34 @@
+// digits from 1-9 k length combination 
+
+class Solution {
+public:
+    
+    void findcomb(int index,int target,int count,vector<int>&temp,vector<vector<int>>&ans)
+    {
+        if(target==0 && count==0)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        //picked the element
+
+        if(index<=9 &&index<=target && count>0 )
+        {
+        temp.push_back(index);
+        findcomb(index+1,target-index,count-1,temp,ans);
+        temp.pop_back();
+        }
+
+        //not pick//for not pick also chech index<=9 as otherwise it will keep not picking and incrementing the index
+        if(index<=9){
+        findcomb(index+1,target,count,temp,ans);
+        }
+        
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        findcomb(1,n,k,temp,ans);
+        return ans;
+    }
+};
