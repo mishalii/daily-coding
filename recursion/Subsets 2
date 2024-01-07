@@ -1,0 +1,26 @@
+class Solution {
+public:
+
+   void solve(int index,vector<int>&temp,vector<vector<int>>&ans,vector<int>&nums)
+   {
+       int n=nums.size();
+       ans.push_back(temp);
+       for(int i=index;i<n;i++)
+       {
+          if(i!=index && nums[i]==nums[i-1] )continue;//i!=index is for that you can pick the first index like ith one but you cna't pick the 2's following it!
+
+          temp.push_back(nums[i]);
+          solve(i+1,temp,ans,nums);
+
+           temp.pop_back();
+       }
+   }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        sort(nums.begin(),nums.end());
+        solve(0,temp,ans,nums);
+
+        return ans;
+    }
+};
