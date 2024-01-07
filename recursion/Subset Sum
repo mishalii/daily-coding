@@ -1,0 +1,29 @@
+
+void solve(int i,int sum,vector<int>&ans,vector<int>&num)
+{
+	if(i==num.size())
+	{
+		ans.push_back(sum);
+		return;
+	}
+
+	//not pick
+	solve(i+1,sum,ans,num);
+
+	//pick
+	solve(i+1,sum+num[i],ans,num);
+
+
+
+}
+
+vector<int> subsetSum(vector<int> &num){
+
+
+	// Write your code here.	
+
+	vector<int>ans;
+	solve(0,0,ans,num);
+	sort(ans.begin(),ans.end());
+	return ans;
+}
