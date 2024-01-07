@@ -1,0 +1,31 @@
+//return no of ap subsequences 
+
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        int n=nums.size();
+        unordered_map<long,int>mp[n];
+        int result=0;
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                long diff=(long)nums[i]-nums[j];//first find the difference of elements at i and j;
+                
+
+                //simply add the count at j+1 at i for that diff subsequence
+
+                mp[i][diff]+=mp[j][diff]+1;
+                
+                //if equal to some value tha the current count at ith index will be incremented by just 1 value
+
+                result=result+mp[j][diff];
+                // as the previous result stored will must be greater than or equal to 2 then if we find a current element then the result will be greater than or equal to 3;
+            }
+
+        }
+
+        return result;
+    }
+};
